@@ -1,6 +1,5 @@
-import { memo, useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { memo, useEffect, useRef, useState, useCallback, useMemo, lazy, Suspense } from "react";
 import { createPortal } from "react-dom";
-import EmojiPicker, { Theme as EmojiTheme } from "emoji-picker-react";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
 import { Copy, Reply, Smile, Trash2, Check, CheckCheck, RotateCcw, CreditCard as Edit2, Box, FileText, Play, Pause, Trash, MoreVertical, Plus, RefreshCw, Info, X, ZoomIn, ZoomOut, ArrowLeft } from "lucide-react";
@@ -27,6 +26,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MessageInfoDialog } from "@/components/message-info-dialog";
+
+const LazyEmojiPicker = lazy(async () => {
+  const mod = await import("emoji-picker-react");
+  return {
+    default: (props: any) => <mod.default {...props} />,
+  };
+});
 
 export type Message = {
   id: string;
@@ -584,12 +590,14 @@ export const MessageBubble = memo(function MessageBubble({
                       </button>
                     </PopoverTrigger>
                     <PopoverContent side="bottom" align="center" className="w-auto p-0 border-0 shadow-2xl">
-                      <EmojiPicker
-                        theme={EmojiTheme.AUTO}
-                        onEmojiClick={(e) => {
-                          handleReact(e.emoji);
-                        }}
-                      />
+                      <Suspense fallback={<div className="grid h-[320px] w-[320px] place-items-center text-xs text-muted-foreground">Loading emoji…</div>}>
+                        <LazyEmojiPicker
+                          theme={typeof document !== "undefined" && document.documentElement.classList.contains("dark") ? "dark" : "light"}
+                          onEmojiClick={(e) => {
+                            handleReact(e.emoji);
+                          }}
+                        />
+                      </Suspense>
                     </PopoverContent>
                   </Popover>
                 </div>
@@ -699,12 +707,14 @@ export const MessageBubble = memo(function MessageBubble({
               </button>
             </PopoverTrigger>
             <PopoverContent side="bottom" align="center" className="w-auto p-0 border-0 shadow-2xl">
-              <EmojiPicker
-                theme={EmojiTheme.AUTO}
-                onEmojiClick={(e) => {
-                  handleReact(e.emoji);
-                }}
-              />
+              <Suspense fallback={<div className="grid h-[320px] w-[320px] place-items-center text-xs text-muted-foreground">Loading emoji…</div>}>
+                <LazyEmojiPicker
+                  theme={typeof document !== "undefined" && document.documentElement.classList.contains("dark") ? "dark" : "light"}
+                  onEmojiClick={(e) => {
+                    handleReact(e.emoji);
+                  }}
+                />
+              </Suspense>
             </PopoverContent>
           </Popover>
         </div>

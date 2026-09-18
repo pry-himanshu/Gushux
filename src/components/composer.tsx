@@ -1,8 +1,7 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
 import { Paperclip, Send, Smile, Loader as Loader2, X, Mic, Camera, CalendarClock, ChevronUp, Pencil, Trash2 } from "lucide-react";
-import EmojiPicker, { Theme as EmojiTheme } from "emoji-picker-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -18,6 +17,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useDraft } from "@/hooks/use-draft";
 import { subscribeWithReconnect } from "@/lib/realtime-utils";
 import { cancelScheduledMessage, createScheduledMessage, listScheduledMessages, updateScheduledMessage } from "@/lib/scheduling.functions";
+
+const LazyEmojiPicker = lazy(async () => {
+  const mod = await import("emoji-picker-react");
+  return {
+    default: (props: any) => <mod.default {...props} />,
+  };
+});
 
 const MAX_MESSAGE_LENGTH = 4000;
 
@@ -923,18 +929,20 @@ function EmojiPickerWrapper({ text, setText }: { text: string; setText: (t: stri
   };
 
   const picker = (
-    <EmojiPicker
-      className="!border-none !shadow-none"
-      width="100%"
-      height={isMobile ? 350 : 400}
-      theme={
-        typeof document !== "undefined" &&
-        document.documentElement.classList.contains("dark")
-          ? EmojiTheme.DARK
-          : EmojiTheme.LIGHT
-      }
-      onEmojiClick={onEmoji}
-    />
+    <Suspense fallback={<div className="grid h-[350px] w-full place-items-center text-xs text-muted-foreground">Loading emoji…</div>}>
+      <LazyEmojiPicker
+        className="!border-none !shadow-none"
+        width="100%"
+        height={isMobile ? 350 : 400}
+        theme={
+          typeof document !== "undefined" &&
+          document.documentElement.classList.contains("dark")
+            ? "dark"
+            : "light"
+        }
+        onEmojiClick={onEmoji}
+      />
+    </Suspense>
   );
 
   if (isMobile) {
