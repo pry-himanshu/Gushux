@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Gushu',
   webDir: '.output/public',
   server: {
-    url: 'https://gushu-nine.vercel.app/',
+    url: 'https://gushux.vercel.app/',
     cleartext: true
   },
   plugins: {
