@@ -1,5 +1,6 @@
 import { createFileRoute, Link, Outlet, useLocation, useNavigate, useParams } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { App as CapacitorApp } from "@capacitor/app";
 import { useQuery, useQueryClient, useIsFetching } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { LogOut, Settings as SettingsIcon, Shield, CircleAlert as AlertCircle, RefreshCw, Loader as Loader2 } from "lucide-react";
@@ -94,6 +95,29 @@ function AppShell() {
   const location = useLocation();
   const params = useParams({ strict: false }) as { conversationId?: string };
   const hasActiveConversation = !!params.conversationId;
+
+  useEffect(() => {
+    const listener = CapacitorApp.addListener("backButton", ({ canGoBack }) => {
+      const isInboxRoot = location.pathname === "/app" || location.pathname === "/app/";
+
+      if (!isInboxRoot && canGoBack) {
+        window.history.back();
+        return;
+      }
+
+      if (!isInboxRoot) {
+        void navigate({ to: "/app", replace: true });
+        return;
+      }
+
+      void CapacitorApp.exitApp();
+    });
+
+    return () => {
+      void listener.then((handle) => handle.remove());
+    };
+  }, [location.pathname, navigate]);
+
   const invalidateConversations = useCallback(() => {
     debounceInvalidation(queryClient, [["conversations"]]);
   }, [queryClient]);
