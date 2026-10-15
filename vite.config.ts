@@ -1,44 +1,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  plugins: [
-    VitePWA({
-      outDir: ".output/public",
-      strategies: "generateSW",
-      registerType: "autoUpdate",
-      injectRegister: false,
-      manifest: false,
-      workbox: {
-        cleanupOutdatedCaches: true,
-        clientsClaim: true,
-        skipWaiting: true,
-        navigateFallback: null,
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
-        runtimeCaching: [
-          {
-            urlPattern: ({ request }) => request.mode === "navigate",
-            handler: "NetworkFirst",
-            options: {
-              cacheName: "gushu-app-pages",
-              networkTimeoutSeconds: 3,
-              expiration: { maxEntries: 20 },
-            },
-          },
-          {
-            urlPattern: ({ url, request }) =>
-              url.origin === self.location.origin &&
-              ["script", "style", "font", "image"].includes(request.destination),
-            handler: "CacheFirst",
-            options: {
-              cacheName: "gushu-static-assets",
-              expiration: { maxEntries: 150, maxAgeSeconds: 60 * 60 * 24 * 30 },
-            },
-          },
-        ],
-      },
-    }),
-  ],
   nitro: true,
   tanstackStart: {
     server: { entry: "server" },
