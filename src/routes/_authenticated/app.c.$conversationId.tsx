@@ -380,6 +380,7 @@ function ChatPage() {
     setVisibleMessageLimit(MESSAGE_PAGE_SIZE);
     loadingOlderRef.current = false;
     preserveScrollRef.current = null;
+    initialScrollDoneRef.current = false;
   }, [conversationId]);
 
   const unreadMessageCount = useMemo(
