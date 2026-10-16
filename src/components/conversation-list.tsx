@@ -279,7 +279,7 @@ export const ConversationList = memo(function ConversationList({
                   onFocus={() => prefetchChat(c.id)}
                   onTouchStart={() => prefetchChat(c.id)}
                   className={cn(
-                    "conversation-row interactive-row block p-4 transition-all duration-300 hover:bg-muted/40 animate-in-fade",
+                    "conversation-row interactive-row block p-4 transition-[transform,opacity,background-color,box-shadow] duration-150 ease-out hover:bg-muted/40 animate-in-fade",
                     idx < 10 && `stagger-${Math.min(Math.floor(idx / 2) + 1, 5)}`,
                     isActive && "conversation-row-active bg-muted/60 scale-[1.02] shadow-sm z-10",
                     c.hidden && "opacity-60",

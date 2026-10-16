@@ -455,7 +455,7 @@ export const MessageBubble = memo(function MessageBubble({
                     }
                   }}
                   className={cn(
-                    "relative inline-block max-w-full min-w-[2rem] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ring-1 transition-all duration-300 select-text cursor-pointer active:scale-[0.98] hover:ring-primary/20",
+                    "relative inline-block max-w-full min-w-[2rem] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ring-1 transition-[transform,opacity,background-color,box-shadow,border-color] duration-150 ease-out select-text cursor-pointer active:scale-[0.98] hover:ring-primary/20",
                     bubbleBg, ringColor,
                     highlighted && "ring-2 ring-amber-400/60 bg-amber-200/10 dark:bg-amber-500/10",
                     mine ? "rounded-tr-md" : "rounded-tl-md",

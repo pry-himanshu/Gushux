@@ -98,6 +98,7 @@ function ChatPage() {
   const realtimeRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const presenceTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const scrollUpdateFrameRef = useRef<number | null>(null);
+  const scrollIdleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const markReadRef = useRef(false);
   const markReadTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const markReadCooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1084,13 +1085,11 @@ function ChatPage() {
         const unreadBelow = isAtBottom ? 0 : unreadMessageCount;
         setUnreadBelowScroll((current) => current === unreadBelow ? current : unreadBelow);
 
-        if (isChatActuallyViewed()) {
-          if (markReadTimeoutRef.current) clearTimeout(markReadTimeoutRef.current);
-          markReadTimeoutRef.current = setTimeout(() => {
-            markReadTimeoutRef.current = null;
-            void markSeenNow();
-          }, 80);
-        }
+        if (scrollIdleTimeoutRef.current) clearTimeout(scrollIdleTimeoutRef.current);
+        scrollIdleTimeoutRef.current = setTimeout(() => {
+          scrollIdleTimeoutRef.current = null;
+          if (isChatActuallyViewed()) void markSeenNow();
+        }, 100);
       });
     };
 
@@ -1111,6 +1110,10 @@ function ChatPage() {
       if (scrollUpdateFrameRef.current !== null) {
         cancelAnimationFrame(scrollUpdateFrameRef.current);
         scrollUpdateFrameRef.current = null;
+      }
+      if (scrollIdleTimeoutRef.current) {
+        clearTimeout(scrollIdleTimeoutRef.current);
+        scrollIdleTimeoutRef.current = null;
       }
       el.removeEventListener("scroll", handleScroll);
       el.removeEventListener("wheel", handleUserScrollInterruption);
@@ -1357,8 +1360,8 @@ function ChatPage() {
                     <div
                       className={cn(
                         "[content-visibility:auto] [contain-intrinsic-size:0_88px]",
-                        idx < 8 && "animate-in-fade",
-                        idx < 8 && `stagger-${Math.min(idx + 1, 5)}`,
+                        idx < 3 && "animate-in-fade",
+                        idx < 3 && `stagger-${idx + 1}`,
                       )}
                       style={{ contain: "layout paint style" }}
                     >

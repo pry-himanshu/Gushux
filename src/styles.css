@@ -406,6 +406,12 @@
   animation: saved-message-aura 2.6s ease-in-out infinite;
 }
 
+@media (max-width: 768px) {
+  .saved-message-aura {
+    animation: none;
+  }
+}
+
 @keyframes saved-cube-enter {
   from { opacity: 0; transform: scale(0.35) rotate(-18deg); }
   65% { opacity: 1; transform: scale(1.18) rotate(6deg); }
@@ -431,7 +437,7 @@
 }
 
 @utility animate-in-fade {
-  animation: fade-in-up var(--transition-normal);
+  animation: fade-in-up 180ms var(--ease-smooth) both;
 }
 
 @utility animate-in-scale {
