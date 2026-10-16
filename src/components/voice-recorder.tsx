@@ -190,23 +190,23 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
   }, []);
 
   return (
-    <div className="relative flex w-full items-center gap-3 rounded-2xl border border-border/70 bg-card/90 p-2 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
-      <div className="flex min-h-12 flex-1 items-center gap-3 rounded-xl bg-muted/40 px-3 py-2">
+    <div className="relative flex w-full min-w-0 items-center gap-1.5 rounded-2xl border border-border/70 bg-card/90 p-1.5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2 sm:gap-3 sm:p-2">
+      <div className="flex min-h-11 min-w-0 flex-1 items-center gap-1.5 overflow-hidden rounded-xl bg-muted/40 px-2 py-2 sm:min-h-12 sm:gap-3 sm:px-3">
         {isRecording ? (
           <>
-            <div className="relative flex h-2 w-2">
+            <div className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
             </div>
-            <span className="min-w-10 text-sm font-semibold tabular-nums text-foreground">
+            <span className="w-9 shrink-0 text-xs font-semibold tabular-nums text-foreground sm:w-10 sm:text-sm">
               {formatDuration(duration)}
             </span>
-            <div className="flex-1 overflow-hidden">
-              <div className="flex h-8 items-center justify-center gap-1">
-                {[...Array(28)].map((_, i) => (
+            <div className="min-w-0 flex-1 overflow-hidden" aria-hidden="true">
+              <div className="flex h-8 items-center justify-center gap-0.5 sm:gap-1">
+                {Array.from({ length: isDesktop ? 28 : 12 }).map((_, i) => (
                   <div 
                     key={i} 
-                    className="w-1 rounded-full bg-primary/50 animate-pulse"
+                    className={`w-1 shrink-0 rounded-full bg-primary/50 ${isDesktop ? "animate-pulse" : ""}`}
                     style={{ 
                       height: `${8 + ((i * 13) % 20)}px`,
                       animationDelay: `${i * 0.05}s`
@@ -221,15 +221,15 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
             <Button
               size="icon"
               variant="ghost"
-              className="size-8"
+              className="size-8 shrink-0 sm:size-9"
               onClick={togglePlayback}
             >
               {isPlaying ? <Pause className="size-4" /> : <Play className="size-4" />}
             </Button>
-            <span className="min-w-10 text-xs font-semibold tabular-nums text-foreground">
+            <span className="w-8 shrink-0 text-[11px] font-semibold tabular-nums text-foreground sm:w-10 sm:text-xs">
               {formatDuration(playbackTime)}
             </span>
-            <div className="relative flex flex-1 items-center">
+            <div className="relative flex min-w-0 flex-1 items-center">
               <div className="absolute inset-x-0 h-1.5 rounded-full bg-primary/15" />
               <div
                 className="pointer-events-none absolute left-0 h-1.5 rounded-full brand-gradient"
@@ -244,10 +244,10 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
                 onChange={(event) => seekPlayback(Number(event.target.value))}
                 disabled={!audioDuration}
                 aria-label="Recording playback position"
-                className="relative z-10 h-5 w-full cursor-pointer appearance-none bg-transparent accent-primary"
+                className="relative z-10 h-8 min-w-0 w-full cursor-pointer appearance-none bg-transparent accent-primary"
               />
             </div>
-            <span className="min-w-10 text-right text-xs tabular-nums text-muted-foreground">
+              <span className="w-8 shrink-0 text-right text-[11px] tabular-nums text-muted-foreground sm:w-10 sm:text-xs">
               {formatDuration(audioDuration || duration)}
             </span>
           </>
@@ -276,7 +276,7 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
         <button
           type="button"
           onClick={() => void startRecording()}
-          className="absolute bottom-full left-0 mb-2 rounded-xl border border-red-400/30 bg-card px-3 py-2 text-xs text-red-300 shadow-xl"
+          className="absolute bottom-full left-0 right-0 mb-2 mx-auto max-w-full rounded-xl border border-red-400/30 bg-card px-3 py-2 text-xs text-red-300 shadow-xl sm:right-auto"
         >
           Allow microphone access and try again
         </button>
@@ -296,11 +296,11 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
         className="hidden"
       />
 
-      <div className="flex items-center gap-2">
+      <div className="flex shrink-0 items-center gap-1 sm:gap-2">
         <Button
           size="icon"
           variant="ghost"
-          className="size-10 text-muted-foreground hover:text-destructive"
+          className="size-9 text-muted-foreground hover:text-destructive sm:size-10"
           onClick={handleDiscard}
           disabled={busy}
         >
@@ -310,7 +310,7 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
         {isRecording ? (
           <Button
             size="icon"
-            className="size-10 rounded-full bg-red-500 hover:bg-red-600"
+            className="size-9 rounded-full bg-red-500 hover:bg-red-600 sm:size-10"
             onClick={stopRecording}
           >
             <Square className="size-4" />
@@ -318,7 +318,7 @@ export function VoiceRecorder({ onSend, onCancel }: VoiceRecorderProps) {
         ) : (
           <Button
             size="icon"
-            className="size-10 rounded-full brand-gradient"
+            className="size-9 rounded-full brand-gradient sm:size-10"
             onClick={handleSend}
             disabled={busy || !recordedBlob}
           >
