@@ -1,0 +1,1838 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Gushu design system — "Obsidian Monolith"
+ * Onyx surfaces, Instrument Serif display, subtle gold accent,
+ * brand violet→blue gradient (from logo) as secondary accent.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-onyx-950: var(--onyx-950);
+  --color-onyx-900: var(--onyx-900);
+  --color-onyx-800: var(--onyx-800);
+  --color-gold-400: var(--gold-400);
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-blue: var(--brand-blue);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Global Motion Tokens */
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease-smooth);
+  --transition-normal: 300ms var(--ease-smooth);
+  --transition-premium: 500ms var(--ease-elastic);
+}
+
+:root {
+  --radius: 0.875rem;
+  /* Light theme — Premium Dashboard */
+  --onyx-950: oklch(0.975 0.005 270);
+  --onyx-900: oklch(0.96 0.006 270);
+  --onyx-800: oklch(0.93 0.008 270);
+  --gold-400: oklch(0.75 0.14 85);
+  --brand-violet: oklch(0.58 0.2 295);
+  --brand-violet: oklch(0.58 0.2 295);
+  --brand-blue: oklch(0.6 0.18 245);
+  --background: oklch(1 0 0); /* Pure white background */
+  --foreground: oklch(0.2 0.015 270); /* Deep charcoal */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.015 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.015 270);
+  --primary: oklch(0.25 0.02 270); /* Sophisticated primary */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.006 270);
+  --secondary-foreground: oklch(0.25 0.02 270);
+  --muted: oklch(0.97 0.005 270);
+  --muted-foreground: oklch(0.48 0.012 270);
+  --accent: oklch(0.96 0.01 295 / 15%); /* Extremely soft violet accent */
+  --accent-foreground: oklch(0.58 0.2 295);
+  --destructive: oklch(0.58 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.93 0.005 270); /* Subtle borders */
+  --input: oklch(0.93 0.005 270);
+  --ring: oklch(0.58 0.2 295);
+  --chart-1: oklch(0.58 0.2 295);
+  --chart-2: oklch(0.6 0.18 245);
+  --chart-3: oklch(0.75 0.14 85);
+  --chart-4: oklch(0.6 0.16 160);
+  --chart-5: oklch(0.68 0.16 30);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.2 0.015 270);
+  --sidebar-primary: oklch(0.58 0.2 295);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.006 270);
+  --sidebar-accent-foreground: oklch(0.25 0.02 270);
+  --sidebar-border: oklch(0.93 0.005 270);
+  --sidebar-ring: oklch(0.58 0.2 295);
+}
+
+.dark {
+  /* Dark theme — Obsidian Monolith */
+  --onyx-950: oklch(0.13 0.005 270);
+  --onyx-900: oklch(0.17 0.005 270);
+  --onyx-800: oklch(0.22 0.006 270);
+  --gold-400: oklch(0.82 0.17 85);
+  --brand-violet: oklch(0.7 0.23 295);
+  --brand-blue: oklch(0.72 0.2 245);
+  --background: oklch(0.13 0.005 270);
+  --foreground: oklch(0.92 0.005 270);
+  --card: oklch(0.17 0.005 270);
+  --card-foreground: oklch(0.92 0.005 270);
+  --popover: oklch(0.17 0.005 270);
+  --popover-foreground: oklch(0.92 0.005 270);
+  --primary: oklch(0.92 0.005 270);
+  --primary-foreground: oklch(0.13 0.005 270);
+  --secondary: oklch(0.22 0.006 270);
+  --secondary-foreground: oklch(0.92 0.005 270);
+  --muted: oklch(0.22 0.006 270);
+  --muted-foreground: oklch(0.62 0.01 270);
+  --accent: oklch(0.22 0.006 270);
+  --accent-foreground: oklch(0.92 0.005 270);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.985 0.002 270);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.7 0.23 295);
+  --chart-1: oklch(0.7 0.23 295);
+  --chart-2: oklch(0.72 0.2 245);
+  --chart-3: oklch(0.82 0.17 85);
+  --chart-4: oklch(0.65 0.18 160);
+  --chart-5: oklch(0.72 0.2 30);
+  --sidebar: oklch(0.155 0.005 270);
+  --sidebar-foreground: oklch(0.92 0.005 270);
+  --sidebar-primary: oklch(0.7 0.23 295);
+  --sidebar-primary-foreground: oklch(0.985 0.002 270);
+  --sidebar-accent: oklch(0.22 0.006 270);
+  --sidebar-accent-foreground: oklch(0.92 0.005 270);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.7 0.23 295);
+
+  /* Subtle dark mode noise */
+  --bg-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body:not(.dark) {
+    background-image: none;
+  }
+
+  h1, h2, h3, .font-display { font-family: var(--font-display); }
+
+  /* Hide scrollbars but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .chat-wallpaper {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scroll-behavior: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+/* Explicit wallpaper rules keep patterns visible in mobile overflow viewports. */
+.chat-wallpaper[data-wallpaper="grid"] {
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-repeat: repeat;
+}
+
+.chat-wallpaper[data-wallpaper="dots"] {
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-repeat: repeat;
+}
+
+.chat-wallpaper[data-wallpaper="waves"] {
+  background: linear-gradient(135deg, rgb(23 37 84 / 0.24), rgb(30 58 138 / 0.18), transparent 75%);
+  background-attachment: local;
+}
+
+.chat-wallpaper[data-wallpaper="aurora"] {
+  background: linear-gradient(135deg, rgb(6 78 59 / 0.24), rgb(19 78 74 / 0.18), transparent 75%);
+  background-attachment: local;
+}
+
+@media (max-width: 768px) {
+  .chat-wallpaper[data-wallpaper="waves"],
+  .chat-wallpaper[data-wallpaper="aurora"] {
+    background-attachment: scroll;
+    background-size: 180% 180%;
+  }
+}
+
+/* Keep older devices responsive while preserving the full visual treatment on capable hardware. */
+@media (prefers-reduced-motion: reduce), (update: slow) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* View Transitions Support */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: var(--ease-smooth);
+}
+
+::view-transition-old(root) {
+  animation: 0.5s var(--ease-smooth) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.5s var(--ease-smooth) both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@utility brand-gradient {
+  background-image: linear-gradient(135deg, var(--brand-violet), var(--brand-blue));
+}
+@utility brand-gradient-text {
+  background-image: linear-gradient(135deg, var(--brand-violet), var(--brand-blue));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility glass-surface {
+  background: color-mix(in srgb, var(--card), transparent 40%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+  
+  .dark & {
+    background: color-mix(in srgb, var(--background), transparent 40%);
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@utility premium-button {
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--brand-violet), var(--brand-blue));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 0;
+  }
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px -5px color-mix(in srgb, var(--brand-blue), transparent 60%);
+    border-color: color-mix(in srgb, var(--brand-blue), transparent 50%);
+    
+    &::before {
+      opacity: 0.1;
+    }
+    
+    svg, .flex {
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg, .flex {
+    position: relative;
+    z-index: 1;
+    transition: all 0.2s ease;
+  }
+}
+
+@utility premium-toast {
+  background: color-mix(in srgb, var(--card), transparent 10%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--foreground);
+  
+  &[data-type="success"] {
+    border-left: 3px solid var(--brand-violet);
+  }
+  
+  &[data-type="error"] {
+    border-left: 3px solid var(--destructive);
+  }
+  
+  .toast-title {
+    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+  
+  .toast-description {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes message-entry {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes saved-message-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0), 0 0 0 rgba(59, 130, 246, 0); }
+  35% { box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.2), 0 0 16px rgba(139, 92, 246, 0.3), 0 0 24px rgba(59, 130, 246, 0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0), 0 0 12px rgba(139, 92, 246, 0.28), 0 0 20px rgba(59, 130, 246, 0.12); }
+}
+
+@utility saved-message-highlight {
+  animation: saved-message-highlight 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes saved-message-aura {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.45); }
+  50% { box-shadow: inset 0 0 0 2px rgba(139, 92, 246, 0.9); }
+}
+
+@utility saved-message-aura {
+  animation: saved-message-aura 2.6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .saved-message-aura {
+    animation: none;
+  }
+}
+
+@keyframes saved-cube-enter {
+  from { opacity: 0; transform: scale(0.35) rotate(-18deg); }
+  65% { opacity: 1; transform: scale(1.18) rotate(6deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes saved-cube-exit {
+  from { opacity: 1; transform: scale(1) rotate(0); }
+  to { opacity: 0; transform: scale(0.35) rotate(18deg); }
+}
+
+@utility saved-cube-enter {
+  animation: saved-cube-enter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility saved-cube-exit {
+  animation: saved-cube-exit 420ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@utility saved-cube-glow {
+  color: #a78bfa;
+  filter: drop-shadow(0 0 3px rgba(167, 139, 250, 0.95)) drop-shadow(0 0 8px rgba(59, 130, 246, 0.65));
+}
+
+@utility animate-in-fade {
+  animation: fade-in-up 180ms var(--ease-smooth) both;
+}
+
+@utility animate-message-entry {
+  animation: message-entry 180ms cubic-bezier(0.2, 0, 0, 1) both;
+  will-change: transform, opacity;
+  transform-origin: center bottom;
+}
+
+@utility animate-in-scale {
+  animation: scale-in var(--transition-premium);
+}
+
+@utility stagger-1 { animation-delay: 50ms; }
+@utility stagger-2 { animation-delay: 100ms; }
+@utility stagger-3 { animation-delay: 150ms; }
+@utility stagger-4 { animation-delay: 200ms; }
+@utility stagger-5 { animation-delay: 250ms; }
+
+@utility bg-textured {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-noise);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@utility app-shell {
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--brand-violet), transparent 97%), transparent 42%),
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--brand-violet), transparent 89%), transparent 34rem),
+    radial-gradient(circle at 88% 100%, color-mix(in srgb, var(--brand-blue), transparent 92%), transparent 32rem),
+    var(--background);
+  background-attachment: fixed;
+}
+
+@utility app-sidebar-header {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card), transparent 4%), transparent),
+    var(--background);
+  box-shadow: 0 18px 34px -30px color-mix(in srgb, var(--foreground), transparent 20%);
+}
+
+@utility app-sidebar {
+  background: color-mix(in srgb, var(--card), transparent 8%);
+  box-shadow: 12px 0 40px -28px color-mix(in srgb, var(--foreground), transparent 55%);
+  backdrop-filter: blur(18px);
+}
+
+@utility app-main-surface {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--brand-violet), transparent 97%), transparent 38%),
+    color-mix(in srgb, var(--background), transparent 4%);
+}
+
+@utility chat-header-shell {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--brand-violet), transparent 96%), transparent 42%),
+    color-mix(in srgb, var(--card), transparent 28%);
+  box-shadow: 0 16px 38px -30px color-mix(in srgb, var(--foreground), transparent 10%);
+}
+
+@utility composer-shell {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--brand-blue), transparent 94%), transparent 52%),
+    color-mix(in srgb, var(--card), transparent 18%);
+  box-shadow: 0 18px 42px -26px color-mix(in srgb, var(--foreground), transparent 8%);
+}
+
+@utility message-stream {
+  background-color: color-mix(in srgb, var(--background), transparent 3%);
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--brand-violet), transparent 98%), transparent 22%);
+}
+
+@utility interactive-row {
+  transform: translateZ(0);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  will-change: transform;
+
+  &:hover {
+    transform: translateX(3px);
+  }
+}
+
+@utility conversation-row {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand-violet), var(--brand-blue));
+    opacity: 0;
+    transform: scaleY(0.35);
+    transform-origin: center;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+}
+
+@utility conversation-row-active {
+  &::before {
+    opacity: 1;
+    transform: scaleY(0.72);
+  }
+}
+
+@utility section-reveal {
+  animation: fade-in-up 420ms var(--ease-smooth) both;
+}
+
+@utility tactile-control {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Gushu interaction polish: consistent focus, touch behavior, and restrained surfaces. */
+@layer base {
+  :where(button, a, [role="button"], input, textarea, select) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(button, a, [role="button"]):focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--ring), transparent 18%);
+    outline-offset: 2px;
+  }
+
+  :where(input, textarea, select) {
+    accent-color: var(--ring);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--brand-violet), transparent 72%);
+    color: var(--foreground);
+  }
+}
+
+@media (hover: none) {
+  .interactive-row:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-sidebar,
+  .chat-header-shell,
+  .composer-shell {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   GUSHU • BIRTHDAY EDITION
+   A lightweight, CSS-only celebration layer. No extra packages or requests.
+   ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --birthday-rose: #f477a8;
+  --birthday-blush: #ffd9e8;
+  --birthday-gold: #e7bd69;
+  --birthday-lilac: #b9a4f5;
+  --birthday-mint: #9edbce;
+}
+
+/* Warm celebratory light, kept subtle behind the actual app content. */
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 8% 0%, color-mix(in srgb, var(--birthday-rose), transparent 88%), transparent 34rem),
+    radial-gradient(ellipse at 96% 8%, color-mix(in srgb, var(--birthday-gold), transparent 89%), transparent 30rem),
+    radial-gradient(ellipse at 85% 100%, color-mix(in srgb, var(--birthday-lilac), transparent 91%), transparent 32rem),
+    var(--background);
+}
+
+/* A tiny ribbon of celebration light instead of heavy particle effects. */
+.app-shell::before {
+  content: "";
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--birthday-rose), var(--birthday-gold), var(--birthday-lilac), var(--birthday-mint), var(--birthday-rose));
+  background-size: 220% 100%;
+  animation: gushu-birthday-ribbon 16s linear infinite;
+}
+
+.app-sidebar {
+  border-color: color-mix(in srgb, var(--birthday-rose), var(--border) 84%);
+  box-shadow: 12px 0 40px -32px color-mix(in srgb, var(--birthday-rose), transparent 52%);
+}
+
+.app-sidebar-header {
+  position: relative;
+  /* Let search suggestions escape the header instead of clipping behind decorations. */
+  overflow: visible;
+  background:
+    radial-gradient(ellipse at 0 0, color-mix(in srgb, var(--birthday-rose), transparent 87%), transparent 65%),
+    radial-gradient(ellipse at 100% 0, color-mix(in srgb, var(--birthday-gold), transparent 87%), transparent 58%),
+    color-mix(in srgb, var(--card), transparent 3%);
+}
+
+.app-sidebar-header::after {
+  content: "✦  ✧  ·  ✦  ·  ✧  ✦";
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  pointer-events: none;
+  color: var(--birthday-gold);
+  font-size: 10px;
+  letter-spacing: .28em;
+  opacity: .55;
+  animation: gushu-birthday-twinkle 4.8s ease-in-out infinite;
+}
+
+.app-sidebar-header > * { position: relative; z-index: 1; }
+
+.app-sidebar-header a:first-child img {
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--birthday-rose), transparent 55%));
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.app-sidebar-header a:first-child:hover img {
+  filter: drop-shadow(0 0 13px color-mix(in srgb, var(--birthday-gold), transparent 35%));
+  transform: rotate(-4deg) scale(1.04);
+}
+
+.app-sidebar-header a:first-child span {
+  background: linear-gradient(100deg, var(--foreground), var(--birthday-rose) 42%, var(--birthday-gold) 72%, var(--foreground));
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gushu-birthday-wordmark 12s ease-in-out infinite;
+}
+
+.app-main-surface {
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--birthday-rose), transparent 94%), transparent 32rem),
+    radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--birthday-gold), transparent 96%), transparent 28rem),
+    color-mix(in srgb, var(--background), transparent 2%);
+}
+
+.app-main-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--birthday-rose), transparent 40%) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 24%, color-mix(in srgb, var(--birthday-gold), transparent 35%) 0 2px, transparent 3px),
+    radial-gradient(circle at 74% 78%, color-mix(in srgb, var(--birthday-lilac), transparent 38%) 0 2px, transparent 3px),
+    radial-gradient(circle at 25% 87%, color-mix(in srgb, var(--birthday-mint), transparent 38%) 0 2px, transparent 3px);
+  background-size: 170px 190px, 230px 220px, 210px 180px, 260px 240px;
+  animation: gushu-birthday-bokeh 30s ease-in-out infinite alternate;
+}
+
+.app-main-surface > * { position: relative; z-index: 1; }
+
+.chat-header-shell {
+  border-color: color-mix(in srgb, var(--birthday-rose), var(--border) 88%);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--birthday-rose), transparent 94%), transparent 42%),
+    color-mix(in srgb, var(--card), transparent 24%);
+}
+
+.composer-shell {
+  border-color: color-mix(in srgb, var(--birthday-lilac), var(--border) 88%);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--birthday-lilac), transparent 94%), transparent 52%),
+    color-mix(in srgb, var(--card), transparent 18%);
+}
+
+.conversation-row-active {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--birthday-rose), transparent 92%), color-mix(in srgb, var(--birthday-gold), transparent 97%));
+}
+
+.conversation-row::before {
+  background: linear-gradient(180deg, var(--birthday-rose), var(--birthday-gold), var(--birthday-lilac));
+}
+
+.tactile-control:hover,
+.premium-button:hover {
+  box-shadow: 0 5px 20px -8px color-mix(in srgb, var(--birthday-rose), transparent 42%);
+}
+
+.section-reveal { animation: gushu-birthday-arrive 420ms cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes gushu-birthday-ribbon { to { background-position: 220% 50%; } }
+@keyframes gushu-birthday-twinkle { 0%,100% { opacity: .28; } 50% { opacity: .78; } }
+@keyframes gushu-birthday-wordmark { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes gushu-birthday-bokeh { to { background-position: 18px 24px, -16px 20px, 22px -14px, -18px -16px; } }
+@keyframes gushu-birthday-arrive { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px), (update: slow) {
+  .app-main-surface::before { animation: none; opacity: .22; }
+  .app-sidebar { box-shadow: 6px 0 24px -24px color-mix(in srgb, var(--birthday-rose), transparent 60%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell::before,
+  .app-sidebar-header::after,
+  .app-sidebar-header a:first-child span,
+  .app-main-surface::before,
+  .section-reveal {
+    animation: none !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   GUSHU: INTENSE BIRTHDAY ENTRANCE
+   Lightweight CSS-only celebration; no network assets or packages.
+   ───────────────────────────────────────────────────────────── */
+.birthday-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff8fc;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255, 94, 164, .22), transparent 36%),
+    radial-gradient(ellipse at 15% 10%, rgba(154, 93, 255, .27), transparent 34%),
+    radial-gradient(ellipse at 90% 85%, rgba(255, 193, 94, .20), transparent 32%),
+    linear-gradient(135deg, #10091d 0%, #21102d 42%, #120b20 100%);
+  animation: birthday-intro-fade-in .45s ease-out both;
+}
+.birthday-intro-backdrop {
+  position: absolute;
+  inset: -20%;
+  z-index: -2;
+  opacity: .72;
+  background:
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,.035) 0deg 1deg, transparent 1deg 15deg);
+  mask-image: radial-gradient(ellipse, #000 0%, transparent 70%);
+  animation: birthday-intro-rays 42s linear infinite;
+}
+.birthday-intro-overlay::before,
+.birthday-intro-overlay::after {
+  content: "";
+  position: absolute;
+  width: min(78vw, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 205, 132, .14);
+  box-shadow: 0 0 90px rgba(255, 91, 162, .09), inset 0 0 90px rgba(178, 113, 255, .06);
+  z-index: -1;
+  pointer-events: none;
+}
+.birthday-intro-overlay::before { animation: birthday-intro-orbit 24s linear infinite; }
+.birthday-intro-overlay::after {
+  width: min(95vw, 850px);
+  border-color: rgba(255,255,255,.07);
+  animation: birthday-intro-orbit 34s linear infinite reverse;
+}
+.birthday-intro-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 219, 155, .08), transparent 13%, transparent 85%, rgba(0,0,0,.22)),
+    repeating-linear-gradient(90deg, #220d30 0 7%, #32103d 8% 12%, #210d31 13% 20%);
+  box-shadow: inset 0 0 70px rgba(0,0,0,.4);
+  animation: birthday-intro-curtain-open 1.35s cubic-bezier(.77,0,.18,1) .22s forwards;
+}
+.birthday-intro-curtain-left { left: 0; transform-origin: left center; border-right: 1px solid rgba(255,211,143,.5); }
+.birthday-intro-curtain-right { right: 0; transform-origin: right center; border-left: 1px solid rgba(255,211,143,.5); }
+.birthday-intro-content {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 780px);
+  padding: 2rem 1rem;
+  text-align: center;
+  animation: birthday-intro-content-arrive 1s cubic-bezier(.2,.8,.2,1) .62s both;
+}
+.birthday-intro-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  color: #ffd8a2;
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .28em;
+  text-shadow: 0 0 22px rgba(255, 190, 115, .4);
+}
+.birthday-intro-eyebrow span { width: clamp(20px, 7vw, 58px); height: 1px; background: linear-gradient(90deg, transparent, #ffcf91); }
+.birthday-intro-eyebrow span:last-child { transform: rotate(180deg); }
+.birthday-intro-cake {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 140px;
+  height: 130px;
+  margin: 1.1rem auto .5rem;
+  animation: birthday-intro-cake-float 3.4s ease-in-out infinite;
+}
+.birthday-intro-cake-glow {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: #ff65a8;
+  filter: blur(35px);
+  opacity: .45;
+  animation: birthday-intro-glow-pulse 2s ease-in-out infinite alternate;
+}
+.birthday-intro-cake-emoji {
+  position: relative;
+  font-size: clamp(4.8rem, 11vw, 6.4rem);
+  filter: drop-shadow(0 10px 24px rgba(255, 107, 166, .35));
+}
+.birthday-intro-spark { position: absolute; color: #ffe5a8; text-shadow: 0 0 18px #ff8fc3; animation: birthday-intro-twinkle 1.6s ease-in-out infinite alternate; }
+.birthday-intro-spark-one { top: 7px; left: 12px; font-size: 1.4rem; }
+.birthday-intro-spark-two { top: 22px; right: 5px; font-size: 1.8rem; animation-delay: .5s; }
+.birthday-intro-spark-three { bottom: 12px; right: 13px; font-size: 1.2rem; animation-delay: .9s; }
+.birthday-intro-kicker {
+  margin: .5rem 0 .45rem;
+  color: rgba(255, 236, 246, .76);
+  font-size: .73rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.birthday-intro-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  line-height: .94;
+  font-family: var(--font-display, Georgia, serif);
+  text-shadow: 0 8px 44px rgba(255, 75, 157, .23);
+}
+.birthday-intro-happy {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: clamp(1.5rem, 4vw, 2.7rem);
+  font-weight: 900;
+  letter-spacing: .28em;
+  padding-left: .28em;
+  color: #fff4fa;
+  animation: birthday-intro-letter-arrive .9s cubic-bezier(.2,.8,.2,1) .85s both;
+}
+.birthday-intro-birthday {
+  margin-top: .2em;
+  font-size: clamp(3.1rem, 10vw, 7.4rem);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  background: linear-gradient(105deg, #fff0c7 5%, #ffb2d5 31%, #d6baff 56%, #ffe0a0 78%, #fff5dc 100%);
+  background-size: 240% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(255, 115, 180, .15));
+  animation: birthday-intro-letter-arrive 1.15s cubic-bezier(.2,.8,.2,1) 1s both, birthday-intro-shimmer 5s linear 2s infinite;
+}
+.birthday-intro-message {
+  margin: 1.1rem auto 0;
+  max-width: 580px;
+  color: rgba(255, 239, 247, .84);
+  font-size: clamp(.86rem, 2vw, 1.05rem);
+  line-height: 1.85;
+  animation: birthday-intro-message-arrive .9s ease-out 1.3s both;
+}
+.birthday-intro-loading { display: flex; flex-direction: column; align-items: center; gap: .6rem; margin: 1.65rem auto 0; }
+.birthday-intro-loading-track {
+  display: block;
+  width: min(54vw, 230px);
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.13);
+  box-shadow: 0 0 20px rgba(255, 125, 185, .14);
+}
+.birthday-intro-loading-track span {
+  display: block;
+  width: 35%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff82bb, #ffe1a3, #c8a8ff);
+  box-shadow: 0 0 14px rgba(255, 167, 205, .75);
+  animation: birthday-intro-loading 2.2s ease-in-out infinite;
+}
+.birthday-intro-loading-label { color: rgba(255, 224, 239, .62); font-size: .58rem; font-weight: 800; letter-spacing: .24em; }
+.birthday-intro-skip {
+  margin-top: 1.2rem;
+  padding: .65rem 1.05rem;
+  border: 1px solid rgba(255, 224, 239, .18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  color: rgba(255, 244, 250, .88);
+  font-size: .75rem;
+  font-weight: 700;
+  backdrop-filter: blur(14px);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  animation: birthday-intro-message-arrive .8s ease-out 1.55s both;
+}
+.birthday-intro-skip:hover { background: rgba(255,255,255,.12); border-color: rgba(255, 211, 143, .55); transform: translateY(-2px); }
+.birthday-intro-skip span { margin-left: .45rem; color: #ffd49b; }
+.birthday-intro-bottom-note {
+  position: absolute;
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  left: 1rem;
+  right: 1rem;
+  color: rgba(255, 231, 243, .36);
+  font-size: .52rem;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-align: center;
+}
+.birthday-intro-confetti { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.birthday-confetti-piece {
+  position: absolute;
+  top: -12%;
+  color: #ffd8a2;
+  font-size: clamp(.7rem, 1.5vw, 1.25rem);
+  opacity: 0;
+  text-shadow: 0 0 15px currentColor;
+  animation-name: birthday-intro-confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.birthday-confetti-piece-1 { color: #ff8fbe; }
+.birthday-confetti-piece-2 { color: #d2b0ff; }
+.birthday-confetti-piece-3 { color: #fff0c7; }
+.birthday-confetti-piece-4 { color: #ffadd2; }
+.birthday-confetti-piece-5 { font-size: clamp(.8rem, 2vw, 1.4rem); }
+.birthday-confetti-piece-6 { color: #f8d5ff; }
+
+@keyframes birthday-intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes birthday-intro-rays { to { transform: rotate(360deg); } }
+@keyframes birthday-intro-orbit { to { transform: rotate(360deg); } }
+@keyframes birthday-intro-curtain-open { to { transform: scaleX(0); opacity: .1; } }
+@keyframes birthday-intro-content-arrive { from { opacity: 0; transform: translateY(22px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes birthday-intro-letter-arrive { from { opacity: 0; transform: translateY(24px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes birthday-intro-message-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes birthday-intro-cake-float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-9px) rotate(2deg); } }
+@keyframes birthday-intro-glow-pulse { to { opacity: .72; transform: scale(1.18); } }
+@keyframes birthday-intro-twinkle { from { opacity: .45; transform: scale(.75) rotate(-12deg); } to { opacity: 1; transform: scale(1.15) rotate(12deg); } }
+@keyframes birthday-intro-shimmer { to { background-position: 240% center; } }
+@keyframes birthday-intro-loading { 0% { transform: translateX(-110%); } 50% { transform: translateX(105%); } 100% { transform: translateX(320%); } }
+@keyframes birthday-intro-confetti-fall { 0% { transform: translate3d(0,-8vh,0) rotate(0); opacity: 0; } 10% { opacity: .9; } 85% { opacity: .8; } 100% { transform: translate3d(24px,112vh,0) rotate(540deg); opacity: 0; } }
+
+@media (max-width: 520px) {
+  .birthday-intro-content { padding: 1.2rem .25rem; }
+  .birthday-intro-cake { width: 105px; height: 100px; margin-top: .75rem; }
+  .birthday-intro-cake-emoji { font-size: 4.8rem; }
+  .birthday-intro-message { line-height: 1.65; padding-inline: .5rem; }
+  .birthday-intro-bottom-note { font-size: .44rem; letter-spacing: .13em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .birthday-intro-overlay *,
+  .birthday-intro-overlay::before,
+  .birthday-intro-overlay::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Cinematic upgrade: bigger reveal, richer lighting, and responsive chat-entry layout. */
+.birthday-intro-overlay {
+  min-height: 100dvh;
+  padding:
+    max(1rem, env(safe-area-inset-top))
+    max(.8rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom))
+    max(.8rem, env(safe-area-inset-left));
+  background:
+    radial-gradient(ellipse at 50% 43%, rgba(255, 73, 155, .30), transparent 34%),
+    radial-gradient(ellipse at 12% 12%, rgba(144, 75, 255, .36), transparent 38%),
+    radial-gradient(ellipse at 88% 84%, rgba(255, 184, 76, .28), transparent 35%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 85, 167, .12), transparent 45%),
+    linear-gradient(135deg, #0b0715 0%, #200b2b 38%, #32102e 68%, #10091c 100%);
+}
+.birthday-intro-overlay .birthday-intro-content {
+  width: min(94vw, 860px);
+  padding: clamp(1rem, 3.2vh, 2.6rem) clamp(.3rem, 2vw, 1.5rem);
+}
+.birthday-intro-overlay .birthday-intro-cake {
+  width: clamp(96px, 15vh, 156px);
+  height: clamp(92px, 14vh, 145px);
+  margin-top: clamp(.35rem, 1.5vh, 1.2rem);
+}
+.birthday-intro-overlay .birthday-intro-cake-emoji {
+  font-size: clamp(4.1rem, 10vh, 6.7rem);
+}
+.birthday-intro-overlay .birthday-intro-birthday {
+  font-size: clamp(2.8rem, 10.8vw, 8rem);
+  letter-spacing: -.055em;
+  line-height: .96;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 115, 180, .24))
+    drop-shadow(0 10px 38px rgba(178, 113, 255, .16));
+}
+.birthday-intro-overlay .birthday-intro-message {
+  max-width: 620px;
+  margin-top: clamp(.8rem, 2vh, 1.5rem);
+  font-size: clamp(.82rem, 1.8vw, 1.08rem);
+}
+.birthday-intro-overlay .birthday-intro-loading { margin-top: clamp(1rem, 2.7vh, 1.9rem); }
+.birthday-intro-overlay .birthday-intro-skip { margin-top: clamp(.7rem, 1.7vh, 1.25rem); }
+
+/* A bright celebratory flash, then the velvet curtains part to reveal the greeting. */
+.birthday-intro-overlay::before {
+  box-shadow:
+    0 0 0 1px rgba(255, 216, 162, .12),
+    0 0 100px rgba(255, 84, 160, .18),
+    inset 0 0 110px rgba(255, 174, 217, .08);
+}
+.birthday-intro-overlay .birthday-intro-curtain {
+  background:
+    linear-gradient(90deg, rgba(255, 231, 177, .14), transparent 10%, transparent 87%, rgba(0,0,0,.3)),
+    repeating-linear-gradient(90deg,
+      #1a0829 0 5%, #2b0d3b 5.5% 10%, #45123e 10.5% 13%, #210a32 13.5% 20%);
+  box-shadow:
+    inset 0 0 90px rgba(0,0,0,.48),
+    0 0 42px rgba(255, 180, 119, .08);
+  animation-duration: 1.55s;
+  animation-delay: .12s;
+}
+.birthday-intro-overlay .birthday-intro-eyebrow {
+  text-shadow: 0 0 18px rgba(255, 190, 115, .65);
+}
+.birthday-intro-overlay .birthday-intro-cake-glow {
+  filter: blur(42px);
+  opacity: .64;
+}
+.birthday-intro-overlay .birthday-intro-happy {
+  text-shadow: 0 0 26px rgba(255, 255, 255, .12);
+}
+.birthday-intro-overlay .birthday-intro-loading-track {
+  width: min(60vw, 270px);
+  height: 4px;
+}
+.birthday-intro-overlay .birthday-intro-bottom-note {
+  padding-bottom: .1rem;
+}
+
+/* Keep the spectacle legible on narrow phones, short landscape screens, and tablets. */
+@media (max-width: 600px) {
+  .birthday-intro-overlay {
+    padding:
+      max(.65rem, env(safe-area-inset-top))
+      max(.6rem, env(safe-area-inset-right))
+      max(.9rem, env(safe-area-inset-bottom))
+      max(.6rem, env(safe-area-inset-left));
+  }
+  .birthday-intro-content {
+    width: 100%;
+    padding: .4rem 0 1.4rem !important;
+  }
+  .birthday-intro-eyebrow {
+    gap: .45rem;
+    font-size: .52rem;
+    letter-spacing: .16em;
+  }
+  .birthday-intro-eyebrow span { width: clamp(12px, 5vw, 25px); }
+  .birthday-intro-kicker {
+    max-width: 90%;
+    margin-inline: auto;
+    font-size: .58rem;
+    letter-spacing: .075em;
+  }
+  .birthday-intro-title { padding-inline: .1rem; }
+  .birthday-intro-happy {
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    letter-spacing: .2em;
+  }
+  .birthday-intro-birthday {
+    font-size: clamp(2.65rem, 12.5vw, 4.6rem) !important;
+    overflow-wrap: anywhere;
+  }
+  .birthday-intro-message {
+    max-width: 350px;
+    padding-inline: .5rem;
+    font-size: clamp(.78rem, 3.5vw, .94rem) !important;
+    line-height: 1.6;
+  }
+  .birthday-intro-loading-label { font-size: .49rem; letter-spacing: .16em; }
+  .birthday-intro-bottom-note {
+    bottom: max(.45rem, env(safe-area-inset-bottom));
+    font-size: .4rem;
+    letter-spacing: .1em;
+  }
+  .birthday-intro-overlay .birthday-intro-curtain {
+    width: 50.5%;
+    background:
+      linear-gradient(90deg, rgba(255, 231, 177, .10), transparent 15%, transparent 83%, rgba(0,0,0,.3)),
+      repeating-linear-gradient(90deg, #1a0829 0 8%, #2b0d3b 8.5% 15%, #210a32 15.5% 23%);
+  }
+}
+@media (max-height: 700px) and (orientation: landscape) {
+  .birthday-intro-content { padding: .25rem .5rem !important; }
+  .birthday-intro-cake { height: 72px !important; width: 78px !important; margin: .1rem auto !important; }
+  .birthday-intro-cake-emoji { font-size: 3.6rem !important; }
+  .birthday-intro-spark { font-size: .9rem; }
+  .birthday-intro-kicker { margin: .15rem 0; font-size: .55rem; }
+  .birthday-intro-happy { font-size: 1.25rem; }
+  .birthday-intro-birthday { font-size: clamp(2.2rem, 8vh, 3.8rem) !important; }
+  .birthday-intro-message { margin-top: .4rem !important; font-size: .75rem !important; line-height: 1.35; }
+  .birthday-intro-loading { margin-top: .55rem !important; gap: .3rem; }
+  .birthday-intro-skip { margin-top: .45rem !important; padding: .42rem .8rem; }
+  .birthday-intro-bottom-note { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BIRTHDAY MAX MODE + MOBILE-FIRST FINISHING PASS
+   Pure CSS decoration: no extra assets, libraries, or network calls.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --birthday-rose: #ff4f9a;
+  --birthday-blush: #ffe0f0;
+  --birthday-gold: #ffd166;
+  --birthday-lilac: #c6a0ff;
+  --birthday-mint: #7ff0d2;
+}
+
+.app-shell {
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in srgb, #ff4f9a, transparent 79%), transparent 34rem),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, #ffd166, transparent 83%), transparent 30rem),
+    radial-gradient(ellipse at 50% 100%, color-mix(in srgb, #a66bff, transparent 86%), transparent 38rem),
+    var(--background);
+}
+.app-shell::before {
+  height: 4px;
+  box-shadow: 0 0 16px rgba(255, 79, 154, .42), 0 0 32px rgba(255, 209, 102, .2);
+  background: linear-gradient(90deg, #ff4f9a, #ffd166, #c6a0ff, #7ff0d2, #ff4f9a, #ffd166);
+  background-size: 280% 100%;
+}
+.app-sidebar {
+  border-color: color-mix(in srgb, var(--birthday-rose), var(--border) 70%);
+  box-shadow: 10px 0 42px -28px rgba(255, 79, 154, .42), inset -1px 0 rgba(255, 209, 102, .05);
+}
+.app-sidebar-header {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(255, 79, 154, .18), transparent 68%),
+    radial-gradient(ellipse at 100% 0%, rgba(255, 209, 102, .15), transparent 60%),
+    color-mix(in srgb, var(--card), transparent 3%);
+}
+.app-sidebar-header::after {
+  content: "✦ ✨ · 🎂 · ✨ ✦";
+  right: 14px;
+  color: #ffd166;
+  text-shadow: 0 0 12px rgba(255, 209, 102, .65);
+  opacity: .76;
+}
+.app-main-surface {
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(255, 79, 154, .09), transparent 35rem),
+    radial-gradient(ellipse at 100% 100%, rgba(255, 209, 102, .07), transparent 30rem),
+    color-mix(in srgb, var(--background), transparent 1%);
+}
+.app-main-surface::before { opacity: .48; }
+.chat-header-shell {
+  border-bottom-color: color-mix(in srgb, var(--birthday-rose), var(--border) 72%);
+  background:
+    linear-gradient(100deg, rgba(255, 79, 154, .10), transparent 48%, rgba(255, 209, 102, .06)),
+    color-mix(in srgb, var(--card), transparent 14%);
+  box-shadow: 0 8px 26px -24px rgba(255, 79, 154, .65);
+}
+.composer-shell {
+  border-top-color: color-mix(in srgb, var(--birthday-lilac), var(--border) 72%);
+  background:
+    linear-gradient(110deg, rgba(198, 160, 255, .09), transparent 48%, rgba(255, 79, 154, .07)),
+    color-mix(in srgb, var(--card), transparent 10%);
+  box-shadow: 0 -8px 26px -24px rgba(198, 160, 255, .65);
+}
+.conversation-row-active {
+  background: linear-gradient(105deg, rgba(255, 79, 154, .15), rgba(198, 160, 255, .09) 58%, rgba(255, 209, 102, .08));
+  box-shadow: inset 0 0 0 1px rgba(255, 79, 154, .11);
+}
+.conversation-row::before { width: 3px; }
+.premium-button, .tactile-control { -webkit-tap-highlight-color: transparent; }
+
+/* The birthday reveal feels richer, but stays inside the screen on phones. */
+.birthday-intro-overlay {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255, 55, 145, .42), transparent 37%),
+    radial-gradient(ellipse at 10% 15%, rgba(154, 75, 255, .38), transparent 38%),
+    radial-gradient(ellipse at 90% 82%, rgba(255, 190, 66, .32), transparent 36%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 80, 183, .20), transparent 44%),
+    linear-gradient(135deg, #090510 0%, #260a35 37%, #45102f 68%, #100719 100%);
+}
+.birthday-intro-overlay::before,
+.birthday-intro-overlay::after {
+  border-color: rgba(255, 209, 102, .24);
+  box-shadow: 0 0 120px rgba(255, 79, 154, .19), inset 0 0 100px rgba(198, 160, 255, .12);
+}
+.birthday-intro-overlay .birthday-intro-birthday {
+  background: linear-gradient(180deg, #fffdf7 0%, #ffe0f0 23%, #ff76b7 49%, #ffd166 78%, #fff1c4 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 16px rgba(255, 79, 154, .38)) drop-shadow(0 12px 38px rgba(255, 209, 102, .2));
+}
+.birthday-intro-overlay .birthday-intro-cake-glow {
+  background: radial-gradient(ellipse, rgba(255, 82, 165, .82), rgba(255, 209, 102, .25) 42%, transparent 72%);
+  opacity: .85;
+}
+.birthday-intro-overlay .birthday-intro-cake-emoji {
+  filter: drop-shadow(0 0 18px rgba(255, 209, 102, .55)) drop-shadow(0 0 42px rgba(255, 79, 154, .35));
+}
+.birthday-intro-overlay .birthday-intro-loading-track {
+  background: rgba(255, 255, 255, .17);
+  box-shadow: 0 0 28px rgba(255, 79, 154, .24);
+}
+.birthday-intro-overlay .birthday-intro-loading-track span {
+  background: linear-gradient(90deg, #ff4f9a, #ffd166, #c6a0ff, #7ff0d2, #ff4f9a);
+  background-size: 220% 100%;
+}
+.birthday-intro-skip {
+  min-height: 44px;
+  border-color: rgba(255, 209, 102, .42);
+  background: linear-gradient(110deg, rgba(255, 79, 154, .19), rgba(198, 160, 255, .13));
+  box-shadow: 0 0 24px rgba(255, 79, 154, .13), inset 0 0 16px rgba(255, 255, 255, .035);
+}
+.birthday-intro-skip:focus-visible { outline: 2px solid #ffd166; outline-offset: 4px; }
+.birthday-confetti-piece { text-shadow: 0 0 12px currentColor, 0 0 28px currentColor; }
+
+/* Mobile sizing: safe areas, touch targets, no horizontal overflow, keyboard-friendly height. */
+html, body, #root { min-height: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+body { overscroll-behavior-y: none; }
+button, [role="button"], a, input, textarea { touch-action: manipulation; }
+input, textarea, select { max-width: 100%; }
+.app-shell { width: 100%; max-width: 100vw; overflow: hidden; }
+.app-main-surface { min-width: 0; min-height: 0; }
+
+@media (max-width: 640px) {
+  .app-sidebar { width: 100%; max-width: 100vw; padding-bottom: env(safe-area-inset-bottom); }
+  .app-sidebar-header { padding: max(.85rem, env(safe-area-inset-top)) .9rem .85rem !important; }
+  .app-main-surface { width: 100%; max-width: 100vw; padding-bottom: env(safe-area-inset-bottom); }
+  .chat-header-shell { padding-top: max(.35rem, env(safe-area-inset-top)); }
+  .composer-shell { padding-bottom: max(.45rem, env(safe-area-inset-bottom)); }
+  .app-main-surface::before { opacity: .18; }
+  .birthday-intro-overlay {
+    min-height: 100svh;
+    min-height: 100dvh;
+    overflow: clip;
+    padding-top: max(.7rem, env(safe-area-inset-top));
+    padding-bottom: max(.7rem, env(safe-area-inset-bottom));
+  }
+  .birthday-intro-overlay .birthday-intro-content { max-height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+  .birthday-intro-overlay .birthday-intro-cake { margin-block: .35rem; }
+  .birthday-intro-overlay .birthday-intro-birthday { font-size: clamp(2.45rem, 12vw, 4.35rem) !important; }
+  .birthday-intro-overlay .birthday-intro-message { max-width: 32rem; text-wrap: pretty; }
+  .birthday-intro-overlay .birthday-intro-bottom-note { max-width: calc(100% - 1rem); margin-inline: auto; }
+}
+
+@media (max-width: 380px) {
+  .birthday-intro-eyebrow { font-size: .46rem !important; letter-spacing: .1em !important; }
+  .birthday-intro-overlay .birthday-intro-cake { width: 82px; height: 78px; }
+  .birthday-intro-overlay .birthday-intro-cake-emoji { font-size: 3.6rem; }
+  .birthday-intro-overlay .birthday-intro-birthday { font-size: clamp(2.1rem, 11.5vw, 2.8rem) !important; letter-spacing: -.045em; }
+  .birthday-intro-overlay .birthday-intro-message { font-size: .76rem !important; }
+  .birthday-intro-bottom-note { font-size: .36rem !important; }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .birthday-intro-overlay { overflow-y: auto; place-items: start center; }
+  .birthday-intro-overlay .birthday-intro-content { padding: .3rem .5rem 1.8rem !important; }
+  .birthday-intro-overlay .birthday-intro-cake { width: 64px; height: 58px; margin: 0 auto !important; }
+  .birthday-intro-overlay .birthday-intro-cake-emoji { font-size: 2.9rem; }
+  .birthday-intro-overlay .birthday-intro-birthday { font-size: clamp(2rem, 8vh, 3.2rem) !important; }
+  .birthday-intro-overlay .birthday-intro-message { margin-top: .25rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell::before, .app-sidebar-header::after, .app-main-surface::before,
+  .birthday-intro-overlay::before, .birthday-intro-overlay::after,
+  .birthday-intro-overlay .birthday-intro-backdrop, .birthday-confetti-piece {
+    animation: none !important;
+  }
+}
+
+
+/* Floating birthday wish clouds and tiny gift packs: ambient, decorative, and never interactive. */
+.birthday-keepsakes {
+  position: fixed; inset: 0; z-index: 12; overflow: hidden;
+  pointer-events: none; user-select: none; contain: layout paint;
+}
+.birthday-wish-cloud {
+  position: absolute; display: flex; align-items: center; gap: .48rem;
+  width: max-content; max-width: 190px; padding: .58rem .78rem;
+  border: 1px solid rgba(255,255,255,.46); border-radius: 999px;
+  color: #5d2448; font-size: .67rem; line-height: 1.15; letter-spacing: .015em;
+  background: linear-gradient(135deg, rgba(255,248,253,.94), rgba(255,218,235,.83));
+  box-shadow: 0 9px 30px rgba(194,54,125,.13), inset 0 1px 0 rgba(255,255,255,.9);
+  backdrop-filter: blur(8px); opacity: .76;
+  animation: birthday-cloud-drift 7s ease-in-out infinite;
+}
+.birthday-wish-cloud::before, .birthday-wish-cloud::after {
+  content: ""; position: absolute; z-index: -1; border-radius: 50%;
+  background: inherit; border: 1px solid rgba(255,255,255,.35);
+}
+.birthday-wish-cloud::before { width: 19px; height: 19px; left: 18px; top: -7px; }
+.birthday-wish-cloud::after { width: 13px; height: 13px; left: 34px; top: -4px; }
+.birthday-wish-cloud span { font-size: 1rem; }
+.birthday-wish-cloud b { font-weight: 650; }
+.birthday-wish-cloud i { color: #ec5d9d; font-size: .9rem; font-style: normal; }
+.wish-cloud-a { top: 14%; right: 2.4%; animation-delay: -1.2s; }
+.wish-cloud-b { top: 42%; left: 1.5%; background: linear-gradient(135deg, rgba(255,250,223,.95), rgba(255,232,178,.83)); color: #73511c; animation-delay: -3.4s; }
+.wish-cloud-c { bottom: 17%; right: 3%; background: linear-gradient(135deg, rgba(245,239,255,.95), rgba(220,205,255,.84)); color: #4e3678; animation-delay: -2.1s; }
+.wish-cloud-d { bottom: 12%; left: 2%; background: linear-gradient(135deg, rgba(230,255,247,.95), rgba(190,246,229,.84)); color: #235f50; animation-delay: -4.5s; }
+.birthday-gift {
+  position: absolute; display: grid; place-items: center; width: 42px; height: 42px;
+  border-radius: 13px; border: 1px solid rgba(255,255,255,.66);
+  box-shadow: 0 8px 22px rgba(40,15,40,.14), inset 0 1px 0 rgba(255,255,255,.7);
+  opacity: .78; transform: rotate(var(--gift-tilt, -8deg));
+  animation: birthday-gift-bob 5.2s ease-in-out infinite;
+}
+.birthday-gift span { font-size: 1.55rem; filter: drop-shadow(0 3px 3px rgba(50,20,40,.15)); }
+.gift-pink { --gift-tilt: -9deg; background: linear-gradient(145deg, #ffb5d2, #ff5e9f); }
+.gift-gold { --gift-tilt: 8deg; background: linear-gradient(145deg, #fff0a9, #ffbd42); animation-delay: -1.8s; }
+.gift-purple { --gift-tilt: 11deg; background: linear-gradient(145deg, #e2ceff, #a984f5); animation-delay: -3s; }
+.gift-mint { --gift-tilt: -6deg; background: linear-gradient(145deg, #c4fff0, #63d8bd); animation-delay: -2.4s; }
+.gift-a { top: 27%; left: 2.5%; }
+.gift-b { top: 8%; right: 15%; width: 34px; height: 34px; }
+.gift-c { bottom: 27%; right: 2.3%; }
+.gift-d { bottom: 7%; left: 17%; width: 35px; height: 35px; }
+.birthday-keepsake-sparkle { position: absolute; color: #f5bd54; text-shadow: 0 0 12px rgba(255,180,74,.7); animation: birthday-keepsake-twinkle 3.6s ease-in-out infinite; }
+.sparkle-a { top: 24%; right: 8%; font-size: 1.4rem; }
+.sparkle-b { top: 62%; left: 8%; font-size: 1.7rem; animation-delay: -1.3s; }
+.sparkle-c { bottom: 22%; right: 15%; color: #f47aa9; font-size: 1.1rem; animation-delay: -2.2s; }
+@keyframes birthday-cloud-drift { 0%,100% { translate: 0 0; rotate: -1deg; } 50% { translate: 0 -8px; rotate: 1deg; } }
+@keyframes birthday-gift-bob { 0%,100% { transform: translateY(0) rotate(var(--gift-tilt, -8deg)); } 50% { transform: translateY(-7px) rotate(calc(var(--gift-tilt, -8deg) * -0.55)); } }
+@keyframes birthday-keepsake-twinkle { 0%,100% { opacity: .25; scale: .8; } 50% { opacity: .9; scale: 1.12; } }
+@media (max-width: 760px) {
+  .birthday-wish-cloud { max-width: 142px; gap: .32rem; padding: .45rem .55rem; font-size: .55rem; opacity: .62; backdrop-filter: none; }
+  .birthday-wish-cloud span { font-size: .8rem; }
+  .wish-cloud-a { top: 13%; right: 1.5%; }
+  .wish-cloud-b { top: 39%; left: 1%; }
+  .wish-cloud-c { bottom: 19%; right: 1%; }
+  .wish-cloud-d { bottom: 10%; left: 1%; }
+  .birthday-gift { width: 31px; height: 31px; border-radius: 10px; opacity: .62; }
+  .birthday-gift span { font-size: 1.15rem; }
+  .gift-a { top: 28%; left: 1%; }
+  .gift-b { top: 8%; right: 21%; width: 27px; height: 27px; }
+  .gift-c { bottom: 29%; right: 1%; }
+  .gift-d { bottom: 6%; left: 20%; width: 28px; height: 28px; }
+  .birthday-keepsake-sparkle { opacity: .48; }
+}
+@media (max-width: 390px) {
+  /* Keep the decorative notes tucked to the edges on compact phones. */
+  .birthday-wish-cloud { max-width: 118px; padding: .38rem .44rem; font-size: .49rem; }
+  .birthday-wish-cloud i { display: none; }
+  .wish-cloud-b { top: 45%; }
+  .wish-cloud-c { bottom: 22%; }
+  .gift-b, .gift-d { opacity: .45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .birthday-wish-cloud, .birthday-gift, .birthday-keepsake-sparkle { animation: none !important; }
+}
+
+/* Birthday party boost: more wish clouds, richer gift colours and a compact mobile sidebar wish. */
+.birthday-keepsakes {
+  background:
+    radial-gradient(ellipse at 10% 12%, rgba(255, 64, 151, .055), transparent 32%),
+    radial-gradient(ellipse at 92% 82%, rgba(255, 201, 77, .055), transparent 30%);
+}
+.birthday-wish-cloud {
+  border-color: rgba(255,255,255,.78);
+  box-shadow: 0 10px 34px rgba(255, 55, 145, .2), 0 0 0 1px rgba(255, 209, 102, .14), 0 0 24px rgba(198, 120, 255, .12), inset 0 1px 0 rgba(255,255,255,.98);
+  opacity: .88;
+}
+.wish-cloud-e { top: 25%; right: 4%; background: linear-gradient(135deg, rgba(224,255,250,.97), rgba(150,238,222,.9)); color: #155b52; animation-delay: -2.7s; }
+.wish-cloud-f { top: 57%; left: 3%; background: linear-gradient(135deg, rgba(255,230,242,.98), rgba(255,179,214,.9)); color: #79204f; animation-delay: -4.1s; }
+.wish-cloud-g { top: 7%; left: 3%; background: linear-gradient(135deg, rgba(255,246,210,.98), rgba(255,214,118,.91)); color: #73501a; animation-delay: -1.9s; }
+.wish-cloud-h { bottom: 32%; right: 4%; background: linear-gradient(135deg, rgba(242,232,255,.98), rgba(204,174,255,.91)); color: #503176; animation-delay: -3.8s; }
+.wish-cloud-i { bottom: 7%; right: 22%; background: linear-gradient(135deg, rgba(255,231,220,.98), rgba(255,184,158,.91)); color: #7b382c; animation-delay: -2.4s; }
+.wish-cloud-j { top: 73%; left: 16%; background: linear-gradient(135deg, rgba(229,239,255,.98), rgba(176,207,255,.91)); color: #244a80; animation-delay: -4.8s; }
+.gift-e { top: 47%; right: 12%; width: 37px; height: 37px; animation-delay: -1.1s; }
+.gift-f { top: 17%; left: 20%; width: 32px; height: 32px; animation-delay: -2.8s; }
+.gift-g { bottom: 43%; left: 12%; width: 38px; height: 38px; animation-delay: -3.7s; }
+.gift-h { bottom: 13%; right: 9%; width: 33px; height: 33px; animation-delay: -.8s; }
+.gift-i { top: 66%; right: 28%; width: 30px; height: 30px; animation-delay: -4.3s; }
+.gift-j { top: 36%; left: 24%; width: 35px; height: 35px; animation-delay: -2.2s; }
+.gift-blue { background: linear-gradient(145deg, #c5e4ff, #639cff); --gift-tilt: 7deg; }
+.gift-coral { background: linear-gradient(145deg, #ffd0c2, #ff7e8b); --gift-tilt: -11deg; }
+.gift-lilac { background: linear-gradient(145deg, #f0d6ff, #bd78ec); --gift-tilt: 10deg; }
+.gift-peach { background: linear-gradient(145deg, #ffe0b8, #ff9b69); --gift-tilt: -7deg; }
+.sparkle-d { top: 43%; left: 46%; color: #ffcf66; font-size: 1.5rem; animation-delay: -.9s; }
+.sparkle-e { top: 83%; right: 8%; color: #c6a0ff; font-size: 1.4rem; animation-delay: -1.7s; }
+.sparkle-f { top: 11%; left: 48%; color: #ff8fbe; font-size: 1.3rem; animation-delay: -2.5s; }
+
+.mobile-birthday-wish { display: none; }
+.mobile-birthday-wish-art { font-size: 1.45rem; line-height: 1.25; letter-spacing: .1em; filter: drop-shadow(0 3px 8px rgba(255, 79, 154, .28)); }
+.mobile-birthday-wish-kicker { margin-top: .25rem; color: #ffd166; font-size: .55rem; font-weight: 900; letter-spacing: .2em; }
+.mobile-birthday-wish p { margin: .3rem auto 0; max-width: 24rem; color: color-mix(in srgb, var(--foreground), transparent 15%); font-family: var(--font-display, inherit); font-size: .74rem; line-height: 1.4; }
+.mobile-birthday-wish-stars { margin-top: .35rem; color: #ff9bc7; font-size: .66rem; letter-spacing: .24em; }
+@media (max-width: 767px) {
+  .mobile-birthday-wish {
+    display: block; flex: 0 0 auto; margin: .25rem .75rem .55rem; padding: .7rem .8rem .65rem;
+    text-align: center; border: 1px solid rgba(255, 143, 190, .48); border-radius: 1.15rem;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 79, 154, .2), transparent 75%), linear-gradient(135deg, rgba(66, 24, 59, .94), rgba(36, 24, 61, .96) 55%, rgba(77, 43, 37, .93));
+    box-shadow: 0 0 0 1px rgba(255, 209, 102, .08), 0 8px 28px rgba(255, 79, 154, .16), inset 0 1px 0 rgba(255,255,255,.08);
+    overflow: hidden; position: relative;
+  }
+  .mobile-birthday-wish::before { content: "✦  ✧  ✦"; position: absolute; top: .4rem; right: .55rem; color: rgba(255,209,102,.75); font-size: .65rem; }
+  .mobile-birthday-wish::after { content: "♡"; position: absolute; bottom: -.55rem; left: .35rem; color: rgba(255,143,190,.18); font-size: 3.4rem; line-height: 1; }
+  .mobile-birthday-wish p { color: rgba(255,245,251,.9); }
+  .birthday-wish-cloud { opacity: .9; }
+  .wish-cloud-a { top: 12%; right: 1%; }
+  .wish-cloud-b { top: 34%; left: 1%; }
+  .wish-cloud-c { bottom: 16%; right: 1%; }
+  .wish-cloud-d { bottom: 8%; left: 1%; }
+  .wish-cloud-e { top: 24%; right: 1%; }
+  .wish-cloud-f { top: 54%; left: 1%; }
+  .wish-cloud-g { top: 5%; left: 1%; }
+  .wish-cloud-h { bottom: 29%; right: 1%; }
+  .wish-cloud-i { bottom: 5%; right: 17%; }
+  .wish-cloud-j { top: 68%; left: 7%; }
+  .gift-e, .gift-f, .gift-g, .gift-h, .gift-i, .gift-j { width: 26px; height: 26px; border-radius: 8px; }
+  .gift-e { top: 46%; right: 3%; }
+  .gift-f { top: 17%; left: 18%; }
+  .gift-g { bottom: 41%; left: 3%; }
+  .gift-h { bottom: 12%; right: 4%; }
+  .gift-i { top: 64%; right: 22%; }
+  .gift-j { top: 37%; left: 22%; }
+  .birthday-gift { opacity: .72; }
+}
+@media (max-width: 390px) {
+  .mobile-birthday-wish { margin-inline: .55rem; padding: .55rem .55rem .5rem; }
+  .mobile-birthday-wish-art { font-size: 1.2rem; }
+  .mobile-birthday-wish p { font-size: .68rem; }
+  .birthday-wish-cloud { max-width: 108px; font-size: .47rem; padding: .34rem .4rem; }
+  .birthday-wish-cloud span { font-size: .72rem; }
+  .birthday-gift span { font-size: .95rem; }
+}
+
+
+/* Permanent low-contrast birthday wish watermark behind the chat UI.
+   Fixed celebratory colours deliberately ignore the user's selected theme. */
+.app-main-surface > .birthday-chat-watermark {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  contain: paint;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 18% 22%, rgba(255, 89, 165, .055), transparent 34%),
+    radial-gradient(ellipse at 82% 68%, rgba(255, 203, 92, .045), transparent 36%),
+    radial-gradient(ellipse at 58% 42%, rgba(180, 126, 255, .035), transparent 38%) !important;
+}
+.birthday-chat-watermark .birthday-mark {
+  position: absolute;
+  display: block;
+  max-width: 90%;
+  white-space: nowrap;
+  color: #ff5d9f !important;
+  opacity: .075 !important;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: clamp(.85rem, 2.2vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: .13em;
+  line-height: 1.25;
+  text-shadow: 0 0 18px rgba(255, 93, 159, .12), 0 1px 0 rgba(255, 210, 115, .12);
+  transform: rotate(-19deg);
+}
+.birthday-chat-watermark .mark-one { top: 9%; left: 5%; color: #ff5d9f !important; font-size: clamp(1.1rem, 3vw, 2.1rem); }
+.birthday-chat-watermark .mark-two { top: 23%; right: -3%; color: #e8b84c !important; transform: rotate(17deg); }
+.birthday-chat-watermark .mark-three { top: 41%; left: 8%; color: #b58aff !important; transform: rotate(-12deg); }
+.birthday-chat-watermark .mark-four { top: 57%; right: 3%; color: #ff8eaf !important; transform: rotate(15deg); }
+.birthday-chat-watermark .mark-five { bottom: 20%; left: 1%; color: #8ddfca !important; transform: rotate(-17deg); }
+.birthday-chat-watermark .mark-six { bottom: 8%; right: 6%; color: #ff5d9f !important; font-size: clamp(1rem, 2.7vw, 1.9rem); transform: rotate(12deg); }
+.birthday-chat-watermark .mark-seven { top: 34%; right: 20%; color: #e8b84c !important; font-size: clamp(1.2rem, 3.2vw, 2.4rem); letter-spacing: .3em; transform: rotate(-26deg); }
+.birthday-chat-watermark .mark-eight { bottom: 35%; left: 26%; color: #b58aff !important; font-size: clamp(.75rem, 1.8vw, 1.25rem); transform: rotate(13deg); }
+@media (max-width: 767px) {
+  .birthday-chat-watermark .birthday-mark { font-size: clamp(.65rem, 2.4vw, 1rem); letter-spacing: .08em; opacity: .065 !important; }
+  .birthday-chat-watermark .mark-one { top: 11%; left: -4%; font-size: clamp(.8rem, 3.2vw, 1.25rem); }
+  .birthday-chat-watermark .mark-two { top: 25%; right: -22%; }
+  .birthday-chat-watermark .mark-three { top: 40%; left: -7%; }
+  .birthday-chat-watermark .mark-four { top: 56%; right: -14%; }
+  .birthday-chat-watermark .mark-five { bottom: 21%; left: -12%; }
+  .birthday-chat-watermark .mark-six { bottom: 9%; right: -8%; font-size: clamp(.8rem, 3vw, 1.15rem); }
+  .birthday-chat-watermark .mark-seven { top: 33%; right: 3%; font-size: clamp(1rem, 4vw, 1.5rem); }
+  .birthday-chat-watermark .mark-eight { bottom: 35%; left: 5%; }
+}
+@media (max-width: 380px) {
+  .birthday-chat-watermark .birthday-mark { letter-spacing: .045em; opacity: .055 !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   BIRTHDAY VISIBILITY + PARTY BOOST
+   Keep the celebration vivid, but never let decorative layers compete
+   with the actual conversation text.
+   ────────────────────────────────────────────────────────────────────── */
+.app-shell {
+  background:
+    radial-gradient(ellipse at 7% 3%, rgba(255, 55, 145, .13), transparent 35rem),
+    radial-gradient(ellipse at 96% 10%, rgba(255, 196, 67, .105), transparent 31rem),
+    radial-gradient(ellipse at 82% 96%, rgba(157, 94, 255, .11), transparent 34rem),
+    radial-gradient(ellipse at 18% 76%, rgba(83, 225, 194, .055), transparent 30rem),
+    var(--background);
+}
+.app-shell::before {
+  height: 4px;
+  box-shadow: 0 0 18px rgba(255, 94, 166, .35), 0 2px 16px rgba(255, 194, 75, .16);
+}
+.app-sidebar {
+  border-right-color: rgba(255, 105, 174, .32);
+  box-shadow: 10px 0 36px -25px rgba(255, 65, 151, .5), inset -1px 0 rgba(255, 204, 111, .06);
+}
+.app-sidebar-header {
+  border-bottom-color: rgba(255, 116, 183, .22);
+  background:
+    radial-gradient(ellipse at 0 0, rgba(255, 64, 151, .15), transparent 70%),
+    radial-gradient(ellipse at 100% 0, rgba(255, 198, 76, .12), transparent 62%),
+    color-mix(in srgb, var(--card), transparent 2%);
+}
+.app-main-surface {
+  background:
+    radial-gradient(ellipse at 48% 0%, rgba(255, 70, 155, .095), transparent 34rem),
+    radial-gradient(ellipse at 100% 92%, rgba(255, 194, 67, .065), transparent 29rem),
+    radial-gradient(ellipse at 0% 55%, rgba(163, 103, 255, .06), transparent 32rem),
+    color-mix(in srgb, var(--background), transparent 1%);
+}
+.app-main-surface::before { opacity: .24; }
+.chat-header-shell {
+  border-bottom-color: rgba(255, 111, 177, .24);
+  box-shadow: 0 5px 28px -24px rgba(255, 71, 153, .65);
+  background:
+    linear-gradient(100deg, rgba(255, 74, 157, .09), transparent 48%, rgba(255, 198, 79, .055)),
+    color-mix(in srgb, var(--card), transparent 5%);
+}
+.composer-shell {
+  border-top-color: rgba(194, 132, 255, .25);
+  box-shadow: 0 -8px 30px -27px rgba(255, 72, 156, .7);
+  background:
+    linear-gradient(120deg, rgba(181, 119, 255, .085), transparent 55%, rgba(255, 185, 74, .055)),
+    color-mix(in srgb, var(--card), transparent 3%);
+}
+.conversation-row-active {
+  background: linear-gradient(100deg, rgba(255, 75, 157, .15), rgba(255, 201, 85, .07) 55%, rgba(175, 125, 255, .08));
+  box-shadow: inset 3px 0 0 #ff6fae, inset 0 0 18px rgba(255, 99, 167, .045);
+}
+
+/* The watermark is a background texture, never foreground text. */
+.app-main-surface > .birthday-chat-watermark {
+  z-index: 0 !important;
+  background:
+    radial-gradient(ellipse at 18% 22%, rgba(255, 89, 165, .065), transparent 34%),
+    radial-gradient(ellipse at 82% 68%, rgba(255, 203, 92, .05), transparent 36%),
+    radial-gradient(ellipse at 58% 42%, rgba(180, 126, 255, .045), transparent 38%) !important;
+}
+.birthday-chat-watermark .birthday-mark {
+  opacity: .035 !important;
+  text-shadow: 0 0 12px rgba(255, 93, 159, .06) !important;
+}
+.birthday-chat-watermark .mark-seven { opacity: .025 !important; }
+
+/* Keep message rows and bubbles crisp above the faint watermark. */
+.app-main-surface [data-msg-id] {
+  position: relative;
+  z-index: 2;
+}
+.app-main-surface [data-msg-id] .rounded-2xl {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Birthday keepsakes stay mounted and in fixed positions. Wishes are subdued
+   over active conversations, while the colourful gift boxes remain visible. */
+.app-shell:has(.app-main-surface .chat-header-shell) > .birthday-keepsakes {
+  opacity: 1 !important;
+}
+.app-shell:has(.app-main-surface .chat-header-shell) > .birthday-keepsakes .birthday-wish-cloud {
+  opacity: .11;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.app-shell:has(.app-main-surface .chat-header-shell) > .birthday-keepsakes .birthday-gift {
+  opacity: .96 !important;
+  animation: none !important;
+  transform: rotate(var(--gift-tilt, -8deg)) !important;
+  box-shadow: 0 8px 22px rgba(40,15,40,.18), 0 0 0 2px rgba(255,255,255,.18), inset 0 2px 0 rgba(255,255,255,.82) !important;
+}
+/* Gifts remain stationary and visible in both the home screen and chats. */
+.birthday-gift {
+  animation: none !important;
+  transform: rotate(var(--gift-tilt, -8deg)) !important;
+}
+.gift-k { top: 18%; right: 4%; width: 40px; height: 40px; }
+.gift-l { top: 72%; right: 5%; width: 35px; height: 35px; }
+.gift-m { bottom: 8%; left: 5%; width: 38px; height: 38px; }
+.gift-n { top: 52%; left: 4%; width: 34px; height: 34px; }
+@media (max-width: 767px) {
+  .app-main-surface::before { opacity: .17; }
+  .birthday-chat-watermark .birthday-mark { opacity: .025 !important; }
+  .app-shell:has(.app-main-surface .chat-header-shell) > .birthday-keepsakes { opacity: 1 !important; }
+  .app-shell:has(.app-main-surface .chat-header-shell) > .birthday-keepsakes .birthday-gift {
+    opacity: .9 !important;
+    width: 28px; height: 28px; border-radius: 9px;
+  }
+  .gift-k { top: 20%; right: 2%; }
+  .gift-l { top: 72%; right: 2%; }
+  .gift-m { bottom: 7%; left: 2%; }
+  .gift-n { top: 51%; left: 2%; }
+  .chat-header-shell { box-shadow: 0 4px 22px -22px rgba(255, 71, 153, .6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell::before { animation: none !important; }
+}
+
+/* Birthday glow outlines for every message bubble. The border is drawn as a
+   non-interactive overlay, so it never covers text, media controls, or taps. */
+.app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl {
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px rgba(255, 111, 174, 0.28),
+    0 0 10px -5px rgba(255, 93, 159, 0.34),
+    0 0 16px -10px rgba(232, 184, 76, 0.24);
+  transition: box-shadow 220ms ease, filter 220ms ease;
+}
+.app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(255, 105, 180, 0.72),
+    rgba(232, 184, 76, 0.64) 34%,
+    rgba(181, 138, 255, 0.62) 68%,
+    rgba(141, 223, 202, 0.62));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  opacity: .82;
+}
+.app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 111, 174, 0.42),
+    0 0 14px -4px rgba(255, 93, 159, 0.4),
+    0 0 20px -8px rgba(232, 184, 76, 0.3);
+}
+@media (max-width: 767px) {
+  .app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl {
+    box-shadow: 0 0 0 1px rgba(255, 111, 174, 0.24), 0 0 7px -4px rgba(255, 93, 159, 0.25);
+  }
+  .app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl::after { opacity: .7; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-main-surface [data-msg-id] .relative.inline-block.rounded-2xl { transition: none; }
+}
+
+/* Forced birthday wallpaper override: ignore each user's saved wallpaper
+   visually, while leaving their saved preference/data untouched. The chat
+   stream itself stays transparent so the app's subtle birthday backdrop shows through. */
+.app-main-surface .chat-wallpaper,
+.app-main-surface .chat-wallpaper[data-wallpaper],
+.app-main-surface .chat-wallpaper[data-wallpaper="grid"],
+.app-main-surface .chat-wallpaper[data-wallpaper="dots"],
+.app-main-surface .chat-wallpaper[data-wallpaper="waves"],
+.app-main-surface .chat-wallpaper[data-wallpaper="aurora"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  background-attachment: initial !important;
+}
+
+/* Bold 3D birthday gift boxes in the chat-stream corners. These are decorative,
+   non-interactive, and layered beneath message content so readability wins. */
+.app-main-surface .chat-wallpaper {
+  position: relative;
+  isolation: isolate;
+}
+.app-main-surface .chat-wallpaper::before,
+.app-main-surface .chat-wallpaper::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: clamp(34px, 4vw, 48px);
+  height: clamp(30px, 3.6vw, 42px);
+  border-radius: 5px 5px 7px 7px;
+  pointer-events: none;
+  user-select: none;
+  opacity: .96;
+  background-size: 100% 100%;
+  box-shadow:
+    3px 3px 0 rgba(74, 18, 70, .28),
+    6px 6px 0 rgba(74, 18, 70, .13),
+    inset -5px -4px 0 rgba(70, 10, 48, .18),
+    inset 2px 2px 0 rgba(255,255,255,.55),
+    0 0 15px rgba(255, 80, 160, .3);
+  animation: birthday-corner-gift-float 5.8s ease-in-out infinite;
+}
+/* Pink-and-rose present, with a bright gold ribbon and 3D lid. */
+.app-main-surface .chat-wallpaper::before {
+  top: 16px;
+  left: 14px;
+  transform: rotate(-8deg);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, #fff1a8 0 10%, transparent 11%),
+    linear-gradient(90deg, transparent 39%, #ffe36b 39% 59%, transparent 59%),
+    linear-gradient(0deg, transparent 35%, #ffe36b 35% 54%, transparent 54%),
+    linear-gradient(180deg, #ffb4d7 0 15%, #ff5aa5 16% 100%);
+  border-top: 5px solid #ffcae3;
+  outline: 1px solid rgba(255,255,255,.68);
+}
+/* Purple-and-cyan present in the opposite corner. */
+.app-main-surface .chat-wallpaper::after {
+  right: 16px;
+  bottom: 20px;
+  transform: rotate(8deg);
+  animation-delay: -2.7s;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, #fff0a0 0 10%, transparent 11%),
+    linear-gradient(90deg, transparent 39%, #ffe878 39% 59%, transparent 59%),
+    linear-gradient(0deg, transparent 35%, #ffe878 35% 54%, transparent 54%),
+    linear-gradient(180deg, #d5b5ff 0 15%, #8d50ed 16% 100%);
+  border-top: 5px solid #a9f5ff;
+  outline: 1px solid rgba(255,255,255,.72);
+  box-shadow:
+    3px 3px 0 rgba(41, 19, 95, .32),
+    6px 6px 0 rgba(41, 19, 95, .14),
+    inset -5px -4px 0 rgba(35, 13, 80, .2),
+    inset 2px 2px 0 rgba(255,255,255,.58),
+    0 0 16px rgba(145, 90, 255, .36);
+}
+.app-main-surface .chat-wallpaper > * {
+  position: relative;
+  z-index: 1;
+}
+.app-main-surface .chat-wallpaper [data-msg-id] {
+  z-index: 2;
+}
+@keyframes birthday-corner-gift-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+@media (max-width: 767px) {
+  .app-main-surface .chat-wallpaper::before,
+  .app-main-surface .chat-wallpaper::after {
+    width: 31px;
+    height: 28px;
+    opacity: .9;
+    box-shadow: 2px 2px 0 rgba(74, 18, 70, .24), 0 0 9px rgba(255, 80, 160, .25), inset -3px -3px 0 rgba(70, 10, 48, .17);
+  }
+  .app-main-surface .chat-wallpaper::before { top: 9px; left: 7px; }
+  .app-main-surface .chat-wallpaper::after { right: 8px; bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-main-surface .chat-wallpaper::before,
+  .app-main-surface .chat-wallpaper::after { animation: none !important; }
+}
